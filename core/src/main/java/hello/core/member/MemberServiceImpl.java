@@ -1,5 +1,7 @@
 package hello.core.member;
 
+import hello.core.order.OrderService;
+
 public class MemberServiceImpl implements MemberService{
 
     private final MemberRepository memberRepository;
@@ -15,5 +17,10 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public Member findMember(Long memberId) {
         return memberRepository.findById(memberId);
+    }
+
+    //테스트 용도
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 }
