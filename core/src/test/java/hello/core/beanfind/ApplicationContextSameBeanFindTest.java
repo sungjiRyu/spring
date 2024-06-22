@@ -19,10 +19,11 @@ public class ApplicationContextSameBeanFindTest {
     @Test
     @DisplayName("타입으로 조회시 같은 타입이 둘 이상 있으면, 중복 오류가 발생한다.")
     void findBeanByTypeDuplicate() {
-        MemberRepository memberRepository = ac.getBean(MemberRepository.class);
+        // method 이름을 추가해서 동일한 타입의 빈을 구별할수 있게 해줬다.
+        MemberRepository memberRepository = ac.getBean("memberRepository1",MemberRepository.class);
         Assertions.assertThrows(NoUniqueBeanDefinitionException.class,
                 () -> ac.getBean(MemberRepository.class));
-    }@Test
+}@Test
     @DisplayName("타입으로 조회시 같은 타입이 둘 이상 있으면, 빈 이름을 지정하면 된다.")
     void findBeanByName() {
         MemberRepository memberRepository = ac.getBean("memberRepository1",MemberRepository.class);
